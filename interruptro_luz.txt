@@ -1,0 +1,14 @@
+default
+{
+    state_entry()
+    {
+        // Configura el canal de comunicación (puedes cambiarlo si es necesario)
+        llListen(234, "", "", "");
+    }
+
+    touch_start(integer total_number)
+    {
+        // Envía un mensaje a la lámpara para alternar su estado
+        llSay(234, "toggle");
+    }
+}

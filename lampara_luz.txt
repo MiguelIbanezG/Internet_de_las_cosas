@@ -1,0 +1,34 @@
+integer isOn = FALSE; // Variable para controlar el estado de la lámpara
+
+default
+{
+    state_entry()
+    {
+        llListen(5, "", "", ""); // Escuchar en el canal 5
+    }
+    
+    listen (integer channel, string name, key id, string message)
+    {
+        if (message == "toggle")
+        {
+            if (isOn)
+            {
+                // Apagar la lámpara (color oscuro, sin brillo)
+                llSetPrimitiveParams([
+                    PRIM_COLOR, ALL_SIDES, <0, 0, 0>, 0.2,
+                    PRIM_FULLBRIGHT, ALL_SIDES, FALSE
+                ]);
+                isOn = FALSE;
+            }
+            else
+            {
+                // Encender la lámpara (color amarillo, brillo activado)
+                llSetPrimitiveParams([
+                    PRIM_COLOR, ALL_SIDES, <1, 1, 0>, 1.0,
+                    PRIM_FULLBRIGHT, ALL_SIDES, TRUE
+                ]);
+                isOn = TRUE;
+            }
+        }
+    }
+}
