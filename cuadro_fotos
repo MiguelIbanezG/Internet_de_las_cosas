@@ -1,0 +1,28 @@
+list textures = [
+    "f5a4c2eb-e5b7-9988-1df7-eb46a96bb47e",
+    "112a6b9a-21a6-d771-43ce-7a481901dc78",
+    "167f4829-993d-33fc-82ef-0e3b9c046c2c"
+];
+
+integer currentTextureIndex = 0;
+
+default
+{
+    state_entry()
+    {
+        // Set the initial texture
+        llSetTexture(llList2String(textures, currentTextureIndex), ALL_SIDES);
+    }
+
+    touch_start(integer total_number)
+    {
+        // Cycle to the next texture
+        currentTextureIndex = (currentTextureIndex + 1) % llGetListLength(textures);
+
+        // Apply the new texture
+        llSetTexture(llList2String(textures, currentTextureIndex), ALL_SIDES);
+
+        // Notify the user
+        llOwnerSay("Texture changed to index " + (string)currentTextureIndex);
+    }
+}
