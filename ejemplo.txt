@@ -1,0 +1,129 @@
+1.- Hablar
+
+default
+{
+    touch_start(integer total_number)
+    {
+        llSay(0,"Hola");
+    }
+}
+
+2.- Escuchar
+
+default
+{
+    state_entry()
+    {
+        llListen(0,"","","");
+    }
+    
+    listen (integer channel, string name, key id, string message)
+    {
+        if (message == "Hola")
+        {
+            llSay(0,"Buenos d�as");
+        }
+        if (message == "Adios")
+        {
+            llSay(0,"Hasta luego");
+        }      
+    }
+}
+
+3.- Cambiar la textura de un objeto
+
+default
+{
+    state_entry()
+    {
+        llListen(0,"","","");
+    }
+    
+    listen (integer channel, string name, key id, string message)
+    {
+        if (message == "velazquez")
+        {
+            llSetTexture("LasMeninas", 4);
+        }
+        if (message == "van gogh")
+        {
+            llSetTexture("NocheEstrellada", 4);
+        }      
+    }
+}
+// En �contents� junto con el script tendr� que haber dos �texturas�
+// denominadas LasMeninas y NocheEstrellada
+
+
+4.- Detectar avatares
+
+default
+{
+    state_entry()
+    {
+        llSensorRepeat("","",AGENT,90.0,PI,5.0);
+    }
+
+    sensor(integer total_number)
+    {
+        integer j;
+                
+        for (j = 0; j < total_number; j++)
+        {
+            string result =  (llDetectedName(j));
+            llSay(0,result);           
+        }
+    }
+        
+    no_sensor()
+    {
+        llSay(0,"No hay nadie");
+    }
+
+}
+
+
+5.- Temporizador
+
+default 
+{
+    state_entry() 
+    {
+        llSetTimerEvent(2.0); // cada 2 segundos
+    }
+
+    timer() 
+    {
+        llSay(0,"hola");
+    }
+}
+
+6.- Cambio de cualquier par�metro del prim
+
+default
+{
+    state_entry()
+    {
+        llListen(0,"","","");
+    }
+    
+    listen (integer channel, string name, key id, string message)
+    {
+        if (message == "rojo")
+        {
+            llSetPrimitiveParams([
+                PRIM_SIZE, <1, 1, 1>,  
+                PRIM_COLOR, ALL_SIDES, <1, 0, 0>,1.0,
+                PRIM_FULLBRIGHT, ALL_SIDES, TRUE
+            ]); 
+        }
+        if (message == "azul")
+        {
+            llSetPrimitiveParams([
+                PRIM_SIZE, <2, 2, 2>,  
+                PRIM_COLOR, ALL_SIDES, <0, 0, 1>,1.0,
+                PRIM_FULLBRIGHT, ALL_SIDES, FALSE
+            ]); 
+        }      
+    }
+}

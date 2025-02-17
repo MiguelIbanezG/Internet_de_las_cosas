@@ -4,7 +4,7 @@ default
 {
     state_entry()
     {
-        llListen(5, "", "", ""); // Escuchar en el canal 5
+        llListen(234, "", "", "");
     }
     
     listen (integer channel, string name, key id, string message)
@@ -19,15 +19,17 @@ default
                     PRIM_FULLBRIGHT, ALL_SIDES, FALSE
                 ]);
                 isOn = FALSE;
+                llOwnerSay("Luz apagada");
             }
             else
             {
                 // Encender la lámpara (color amarillo, brillo activado)
                 llSetPrimitiveParams([
-                    PRIM_COLOR, ALL_SIDES, <1, 1, 0>, 1.0,
+                    PRIM_COLOR, ALL_SIDES, <5, 5, 0>, 5.0,
                     PRIM_FULLBRIGHT, ALL_SIDES, TRUE
                 ]);
                 isOn = TRUE;
+                llOwnerSay("Luz Encendida");
             }
         }
     }

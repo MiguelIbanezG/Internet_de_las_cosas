@@ -1,0 +1,34 @@
+list textures = ["52f5f761-e547-bcf2-f9d3-afe0cd8ce910", "c78e1c06-81ba-a9bb-5230-c3ab393acf57", "a47ccac1-1ed0-c2ca-e3e0-c99bbede89b4"];
+integer numTexturas;
+
+default
+{
+    state_entry()
+    {
+        numTexturas = llGetListLength(textures);
+        llSensorRepeat("", "", AGENT, 10.0, PI, 5.0); 
+    }
+
+    sensor(integer total_number)
+    {
+        // llSay(0, "Personas detectadas: " + (string)total_number);
+        integer index = total_number;
+
+        if (index >= numTexturas)
+        {
+            index = numTexturas - 1; 
+        }
+
+        string currentTexture = llList2String(textures, index); 
+        llSetTexture(currentTexture, ALL_SIDES); 
+        // llSay(0, "Textura actual: " + currentTexture); 
+    }
+
+    no_sensor()
+    {
+        // llSay(0, "No hay personas detectadas.");
+        string currentTexture = llList2String(textures, 0);
+        llSetTexture(currentTexture, ALL_SIDES); 
+        // llSay(0, "Textura actual: " + currentTexture); ¡
+    }
+}
