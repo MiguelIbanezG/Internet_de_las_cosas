@@ -1,7 +1,7 @@
 list textures = [
-    "f5a4c2eb-e5b7-9988-1df7-eb46a96bb47e",
-    "112a6b9a-21a6-d771-43ce-7a481901dc78",
-    "167f4829-993d-33fc-82ef-0e3b9c046c2c"
+    "98a0ead2-4b39-428c-92d5-2835220cb824",
+    "d748b332-ca37-46cb-bb7c-8ae06255e786",
+    "e1266b6e-68b5-42e5-9ad8-5cbb946a13d0"
 ];
 
 integer currentTextureIndex = 0;
