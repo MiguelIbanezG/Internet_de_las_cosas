@@ -2,7 +2,6 @@ default
 {
     state_entry()
     {
-        // Inicia un sensor para detectar avatares en un radio de 10 metros
         llSensorRepeat("", "", AGENT, 10.0, PI, 2.0); 
     }
 
@@ -10,13 +9,13 @@ default
     {
         if (total_number > 0)
         {
-            string name = llDetectedName(0); // Obtiene el nombre del primer avatar detectado
-            llSetText("Hola " + name, <1,1,1>, 1.0); // Muestra el mensaje con color blanco y opacidad total
+            string name = llDetectedName(0); 
+            llSetText("Hola " + name, <1,1,1>, 1.0);
         }
     }
     
     no_sensor()
     {
-        llSetText("", <1,1,1>, 1.0); // Borra el texto cuando no hay avatares cerca
+        llSetText("", <1,1,1>, 1.0);
     }
 }
